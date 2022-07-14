@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class FormInteraction {
+public class LinkTextInteraction {
 
     public static void main(String[] args) {
 
@@ -17,22 +17,17 @@ public class FormInteraction {
             driver.get("https://the-internet.herokuapp.com/login");
 
             // Define selector values
-            By usernameSel = By.id("username");
-            By passwordSel = By.cssSelector("#password");
-            By loginBtnSel = By.cssSelector("[type='Submit']");
+            //By poweredByLinkTextSel = By.linkText("Elemental Selenium");
+            By poweredByLinkTextSel = By.partialLinkText("Elemental");
 
             // Find elements
-            WebElement usernameElem = driver.findElement(usernameSel);
-            WebElement passwordElem = driver.findElement(passwordSel);
-            WebElement loginBtnElem = driver.findElement(loginBtnSel);
+            WebElement poweredByLinkTextElem = driver.findElement(poweredByLinkTextSel);
 
             // Interaction
-            usernameElem.sendKeys("tomsmith");
-            passwordElem.sendKeys("SuperSecretPassword!");
-            loginBtnElem.click();
+            poweredByLinkTextElem.click();
 
             // DEBUG PURPOSE ONLY
-            Thread.sleep(2000);
+            Thread.sleep(5000);
 
         }catch (Exception e){
             e.printStackTrace();

@@ -1,11 +1,14 @@
 package api_learning;
 
+import dev.failsafe.internal.util.Assert;
 import driver.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class FormInteraction {
+import java.util.List;
+
+public class FormInteractionMultipleMatching {
 
     public static void main(String[] args) {
 
@@ -17,18 +20,21 @@ public class FormInteraction {
             driver.get("https://the-internet.herokuapp.com/login");
 
             // Define selector values
-            By usernameSel = By.id("username");
-            By passwordSel = By.cssSelector("#password");
+            By loginInputFieldsSel = By.tagName("input");
             By loginBtnSel = By.cssSelector("[type='Submit']");
 
-            // Find elements
-            WebElement usernameElem = driver.findElement(usernameSel);
-            WebElement passwordElem = driver.findElement(passwordSel);
-            WebElement loginBtnElem = driver.findElement(loginBtnSel);
-
             // Interaction
-            usernameElem.sendKeys("tomsmith");
-            passwordElem.sendKeys("SuperSecretPassword!");
+            List<WebElement> loginFormFieldsElem = driver.findElements(loginInputFieldsSel);
+            WebElement loginBtnElem = driver.findElement(loginBtnSel);
+            final int USERNAME_INDEX =0;
+            final int PASSWORD_INDEX =1;
+            if(!loginFormFieldsElem.isEmpty()){
+                loginFormFieldsElem.get(USERNAME_INDEX).sendKeys("tomsmith");
+                loginFormFieldsElem.get(PASSWORD_INDEX).sendKeys("SuperSecretPassword!");
+
+            } else{
+               //Assert.fail(".....");
+            }
             loginBtnElem.click();
 
             // DEBUG PURPOSE ONLY
