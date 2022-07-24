@@ -2,6 +2,7 @@ package api_learning;
 
 import driver.DriverFactory;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -27,6 +28,15 @@ public class DynamicControl implements Urls {
 
             // Checkbox form interaction
             WebElement checkboxFormElem = driver.findElement(checkboxFormSel);
+            JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+            boolean isLocal = System.getenv("isLocal") != null && System.getenv("isLocal").equalsIgnoreCase("true");
+            if (isLocal) {
+                javascriptExecutor.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 4px solid red;');", checkboxFormElem);
+            }
+
+            // DEBUG purpose ONLY
+            Thread.sleep(2000);
+
             WebElement checkboxElem = checkboxFormElem.findElement(By.tagName("input"));
             if (!checkboxElem.isSelected()) checkboxElem.click();
 
@@ -37,7 +47,7 @@ public class DynamicControl implements Urls {
             WebElement inputFormElem = driver.findElement(inputFormSel);
             WebElement inputFieldElem = inputFormElem.findElement(By.tagName("input"));
             WebElement inputBtnElem = inputFormElem.findElement(By.tagName("button"));
-            if(!inputFieldElem.isEnabled()) inputBtnElem.click();
+            if (!inputFieldElem.isEnabled()) inputBtnElem.click();
 
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
             wait.until(new WaitForElementEnabled(By.cssSelector("#input-example input")));
