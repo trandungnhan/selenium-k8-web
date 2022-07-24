@@ -40,7 +40,6 @@ public class DynamicControl implements Urls {
             if(!inputFieldElem.isEnabled()) inputBtnElem.click();
 
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-//            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading")));
             wait.until(new WaitForElementEnabled(By.cssSelector("#input-example input")));
             inputFieldElem.sendKeys("Tui ten la Teo, hello cac ban!!!");
 
