@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static models.components.global.TopMenuComponent.CatItemComponent;
+import static models.components.global.TopMenuComponent.SublistComponent;
 import static models.components.global.TopMenuComponent.MainCatItem;
 
 
@@ -87,13 +87,13 @@ public class FooterTestFlow {
         String randomCatHref = randomMainItemElem.catItemLinkElem().getAttribute("href");
 
         // Get sublist
-        List<CatItemComponent> catItemComps = randomMainItemElem.catItemComps();
+        List<SublistComponent> sublistComps = randomMainItemElem.sublistComps();
 
-        if (catItemComps.isEmpty()) {
+        if (sublistComps.isEmpty()) {
             randomMainItemElem.catItemLinkElem().click();
         } else {
-            int randomIndex = new SecureRandom().nextInt(catItemComps.size());
-            CatItemComponent randomCatItemComp = catItemComps.get(randomIndex);
+            int randomIndex = new SecureRandom().nextInt(sublistComps.size());
+            SublistComponent randomCatItemComp = sublistComps.get(randomIndex);
             randomCatHref = randomCatItemComp.getComponent().getAttribute("href");
             randomCatItemComp.getComponent().click();
         }
