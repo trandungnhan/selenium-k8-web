@@ -6,3 +6,4 @@ release.propertites
 .idea
 .mvn/wrapper/maven-wrapper.jar
 allure-*
+screenshots
