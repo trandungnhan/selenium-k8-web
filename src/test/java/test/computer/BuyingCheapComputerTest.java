@@ -1,6 +1,7 @@
 package test.computer;
 
 import models.components.order.CheapComputerComponent;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import test.BaseTest;
@@ -15,6 +16,7 @@ public class BuyingCheapComputerTest extends BaseTest implements Urls {
 
     @Test(dataProvider = "computerData")
     public void testCheapComputerBuying(ComputerData computerData){
+        WebDriver driver = getDriver();
         driver.get(demoBaseUrl.concat("/build-your-cheap-own-computer"));
         OrderComputerFlow<CheapComputerComponent> orderComputerFlow =
                 new OrderComputerFlow<>(driver, CheapComputerComponent.class, computerData);
